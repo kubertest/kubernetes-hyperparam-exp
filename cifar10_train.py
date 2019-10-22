@@ -74,7 +74,7 @@ class TSVLogger():
    
 def main():
     #job_id = int(os.environ['JOB_ID'])
-    job_id = 1;
+    job_id = 1
     DATA_DIR = './datasets/cifar10-data'
 
     #print('Downloading datasets')
