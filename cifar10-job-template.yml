@@ -14,7 +14,7 @@ spec:
       containers:
        - name: pytorch
          image: nvcr.io/nvidia/pytorch:18.11-py3
-	 workingDir: /home/rakshith/test1/kubernetes-hyperparam-exp
+         workingDir: /home/rakshith/test1/kubernetes-hyperparam-exp
          env:
          - name: JOB_ID
            value: "$ITEM"
