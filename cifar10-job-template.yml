@@ -35,9 +35,9 @@ spec:
       - name: cifar10-dataset
         nfs:
           server: 192.168.88.251
-          path: /home/rakshith/Kuber123/kubernetes-hyperparam-exp-master/datasets/
+          path: /home/rakshith/test1/kubernetes-hyperparam-exp/datasets
       computeResources:
        - name: "nvidia-gpu"
          resources:
            limits:
-             nvidia.com/gpu: 1
+             nvidia.com/gpu: 2
