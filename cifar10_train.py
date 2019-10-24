@@ -73,8 +73,8 @@ class TSVLogger():
         return '\n'.join(self.log)
    
 def main():
-    job_id = int(os.environ['JOB_ID'])
-    #job_id = 1
+    #job_id = int(os.environ['JOB_ID'])
+    job_id = 1
     DATA_DIR = './datasets/cifar10-data'
 
     #print('Downloading datasets')
@@ -90,7 +90,7 @@ def main():
     momentum = hyperparams["momentum"]
     use_bn = hyperparams["batch_norm"]
     
-    lr_schedule = PiecewiseLinear([0, 5, 24], [0, max_learning_rate, 0])
+    lr_schedule = PiecewiseLinear([0, 5, 2], [0, max_learning_rate, 0])
     
     model = TorchGraph(union(net(use_bn=use_bn), losses)).to(device).half()
     opt = nesterov(trainable_params(model), momentum=momentum, weight_decay=5e-4*batch_size)
