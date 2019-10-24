@@ -78,8 +78,8 @@ def main():
     DATA_DIR = './datasets/cifar10-data'
 
     #print('Downloading datasets')
-    train_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=True, download=True)
-    test_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=False, download=True)
+    train_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=True, download=False)
+    test_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=False, download=False)
     
     # Load hyperparameters
     hyperparams = get_hyperparameters(job_id)
@@ -108,7 +108,7 @@ def main():
     train_set_aug = Transform(train_set, [Crop(32, 32), FlipLR(), Cutout(data_aug_cutout_size, data_aug_cutout_size)])
     summary = train(model, lr_schedule, opt, train_set_aug, test_set, 
           batch_size=batch_size, loggers=(TableLogger(), TSV), timer=t, test_time_in_total=False, drop_last=True)
-        
+      
     with open('./datasets/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
         cw = csv.writer(csvfile, delimiter=',')
         for key, val in summary.items():
