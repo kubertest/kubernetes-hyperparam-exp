@@ -75,7 +75,7 @@ class TSVLogger():
 def main():
     job_id = int(os.environ['JOB_ID'])
     #job_id = 1
-    DATA_DIR = './datasets/cifar10-data'
+    DATA_DIR = '/home/test1/kubernetes-hyperparam-exp/datasets/cifar10-data'
 
     #print('Downloading datasets')
     train_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=True, download=True)
@@ -90,7 +90,7 @@ def main():
     momentum = hyperparams["momentum"]
     use_bn = hyperparams["batch_norm"]
     
-    lr_schedule = PiecewiseLinear([0, 5, 10], [0, max_learning_rate, 0])
+    lr_schedule = PiecewiseLinear([0, 5, 2], [0, max_learning_rate, 0])
     
     model = TorchGraph(union(net(use_bn=use_bn), losses)).to(device).half()
     opt = nesterov(trainable_params(model), momentum=momentum, weight_decay=5e-4*batch_size)
@@ -109,7 +109,7 @@ def main():
     summary = train(model, lr_schedule, opt, train_set_aug, test_set, 
           batch_size=batch_size, loggers=(TableLogger(), TSV), timer=t, test_time_in_total=False, drop_last=True)
       
-    with open('./datasets/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
+    with open('/home/test1/kubernetes-hyperparam-exp/datasets/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
         cw = csv.writer(csvfile, delimiter=',')
         for key, val in summary.items():
             cw.writerow([key, val])    
