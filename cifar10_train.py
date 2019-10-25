@@ -111,7 +111,7 @@ def main():
     
     print(os.listdir())
     os.mkdir('hey')
-    with open('/mnt/share/temp/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
+    with open('/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
         print (os.getcwd())
         cw = csv.writer(csvfile, delimiter=',')
         for key, val in summary.items():
