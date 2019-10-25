@@ -116,7 +116,7 @@ def main():
         cw = csv.writer(csvfile, delimiter=',')
         for key, val in summary.items():
             cw.writerow([key, val])    
-     print(os.listdir())
+    print(os.listdir())
        
 if __name__ == '__main__':
     main()
