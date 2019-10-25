@@ -25,7 +25,7 @@ spec:
          - name: cifar10-training
            mountPath: /cifar10-training
          - name: cifar10-dataset
-           mountPath: /datasets
+           mountPath: /mnt/share
       volumes:
       - name: cifar10-training
         gitRepo:
