@@ -75,7 +75,7 @@ class TSVLogger():
 def main():
     job_id = int(os.environ['JOB_ID'])
    # job_id = 1
-    DATA_DIR = '/home/rakshith/test1/kubernetes-hyperparam-exp/datasets/cifar10-data'
+    DATA_DIR = '/datasets/cifar10-data'
 
     #print('Downloading datasets')
     train_set_raw = torchvision.datasets.CIFAR10(root=DATA_DIR, train=True, download=True)
@@ -109,7 +109,7 @@ def main():
     summary = train(model, lr_schedule, opt, train_set_aug, test_set, 
           batch_size=batch_size, loggers=(TableLogger(), TSV), timer=t, test_time_in_total=False, drop_last=True)
       
-    with open('/home/rakshith/test1/kubernetes-hyperparam-exp/datasets/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
+    with open('/datasets/results_job_id_'+str(job_id)+'.log', 'w') as csvfile:
         print (os.getcwd())
         cw = csv.writer(csvfile, delimiter=',')
         for key, val in summary.items():
