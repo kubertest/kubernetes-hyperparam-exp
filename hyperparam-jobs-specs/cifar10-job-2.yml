@@ -25,7 +25,7 @@ spec:
            mountPath: /cifar10-training
          - name: cifar10-dataset
            mountPath: /mnt/share
-	 resources:
+         resources:
            limits:
              nvidia.com/gpu: 1
       volumes:
