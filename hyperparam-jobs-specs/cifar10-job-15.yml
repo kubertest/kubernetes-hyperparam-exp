@@ -27,7 +27,7 @@ spec:
            mountPath: /mnt/share
          resources:
            limits:
-             nvidia.com/gpu: 2
+             nvidia.com/gpu: 1
       volumes:
       - name: cifar10-training
         gitRepo:
