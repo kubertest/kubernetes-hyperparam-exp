@@ -293,6 +293,7 @@ def train(model, lr_schedule, optimizer, train_set, test_set, batch_size=512,
         lrs = (lr_schedule(x)/batch_size for x in np.arange(epoch, epoch+1, 1/len(train_batches)))
         train_stats, train_time = train_epoch(model, train_batches, optimizer, lrs, {'loss': [], 'correct': []}), t()
         test_stats, test_time = test_epoch(model, test_batches, {'loss': [], 'correct': []}), t(test_time_in_total)
+	print(model.fc1.weight.data)
         summary = {
            'epoch': epoch+1, 
            'lr': lr_schedule(epoch+1), 
@@ -302,7 +303,8 @@ def train(model, lr_schedule, optimizer, train_set, test_set, batch_size=512,
            'test time': test_time, 
            'test loss': sum_(test_stats['loss'])/N_test, 
            'test acc': sum_(test_stats['correct'])/N_test,
-           'total time': t.total_time, 
+           'total time': t.total_time,
+	   'model weights': model.fc1.weight.data, 
         }
         for logger in loggers:
             logger.append(summary)    
