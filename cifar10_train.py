@@ -90,7 +90,7 @@ def main():
     momentum = hyperparams["momentum"]
     use_bn = hyperparams["batch_norm"]
     
-    lr_schedule = PiecewiseLinear([0, 5, 10], [0, max_learning_rate, 0])
+    lr_schedule = PiecewiseLinear([0, 5, 2], [0, max_learning_rate, 0])
     
     model = TorchGraph(union(net(use_bn=use_bn), losses)).to(device).half()
     opt = nesterov(trainable_params(model), momentum=momentum, weight_decay=5e-4*batch_size)
